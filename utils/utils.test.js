@@ -1,27 +1,28 @@
 const utils = require('./utils');
 const expect = require('expect');
 
-it('should add two numbers', () => {
-    var res = utils.add(2,3);
-   
-   //expect(res).toBe(5); // it generates error automatically expected 5 ... 
-    expect(res).toBe(5).toBeA('number');
+// it('should add two numbers', () => {
     
-    // if(res !== 5) 
-    // {
-    //     throw new Error(`Expected 44, but got ${res}`);
-    // }
-});
-
-it('should take square', () => {
-   var res = utils.square('2');
+//     var res = utils.add(2,3);
    
-//    if(res !== 4) {
-//        throw new Error(`Expected 4 but got ${res}`);
-//    }
-// expect(res).toBe(4).toBeA('number');
+//    //expect(res).toBe(5); // it generates error automatically expected 5 ... 
+//     expect(res).toBe(5).toBeA('number');
+    
+//     // if(res !== 5) 
+//     // {
+//     //     throw new Error(`Expected 44, but got ${res}`);
+//     // }
+// });
 
-});
+// it('should take square', () => {
+//    var res = utils.square('2');
+   
+// //    if(res !== 4) {
+// //        throw new Error(`Expected 4 but got ${res}`);
+// //    }
+// // expect(res).toBe(4).toBeA('number');
+
+// });
 
 //  it('should expect some values', () => {
 //    expect(12).toNotBe(11);
@@ -47,19 +48,19 @@ it('should take square', () => {
 //toBe dows not work with arrays r objects ...  
 
 
-it('should verify user object properties' ,() => {
+// it('should verify user object properties' ,() => {
     
-      var userObj = utils.setName({
-          age: 25,
-          location:'Pakistan'
-      },'Aamir Naeem');
+//       var userObj = utils.setName({
+//           age: 25,
+//           location:'Pakistan'
+//       },'Aamir Naeem');
       
-     expect(userObj).toInclude({
+//      expect(userObj).toInclude({
          
-         firstName:'Aamir',
-         lastName:'Naeem'
+//          firstName:'Aamir',
+//          lastName:'Naeem'
          
-     }).toBeA('object');
+//      }).toBeA('object');
     
 //    var user = {age: 24, location:'Pakistan'};
     
@@ -71,7 +72,7 @@ it('should verify user object properties' ,() => {
 //         firstName:'Aamir',
 //         lastName:'Naeem'
 //     });
-});
+//});
 
 
 
@@ -82,19 +83,42 @@ it('should verify user object properties' ,() => {
 
 
 /**Async Testing ... */
-it('should async add two numbers', (done) => { // for async to tell mocha its async
-   utils.asyncAdd(4,3, (sum) => {
+
+
+// describe comes with mocha ... 
+// this is gonne let us group of test nd give the group a name 
+
+
+// ---------- Describe Utils ------------
+describe('Utils', () => {
+    
+    // ---------------add ----------
+    
+    describe('#add', () => {
+           it('should add two numbers', () => {
+    var res = utils.add(2,3);
+   
+    expect(res).toBe(5).toBeA('number');
+    
+        });
+    });
+
+// ----------------- Async add ---------------
+    it('should async add two numbers', (done) => { 
+       utils.asyncAdd(4,3, (sum) => {
        
        expect(sum).toBe(7).toBeA('number');
        done();
-   }) ;
+   });
 });
 
+// ------------------- Async Square -----------
 
-it('should async square a number', (done) => {
-   
-   utils.asyncSquare(4 , (sqr) => {
-       expect(sqr).toBe(16).toBeA('number');
-       done();
-   }); 
+    it('should async square a number', (done) => {
+
+        utils.asyncSquare(4 , (sqr) => {
+            expect(sqr).toBe(16).toBeA('number');
+            done();
+        }); 
+    });
 });
